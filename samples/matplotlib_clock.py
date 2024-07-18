@@ -38,15 +38,18 @@ while True:
     minute = now_time.minute
     second = now_time.second
 
+    plt.axis('off')
     # Calculate end points of hour, minute, second
 
-    hour_vector = clock_hand_vector(hour/12*2*np.pi, hour_hand_length)
-    minute_vector = clock_hand_vector(minute/60*2*np.pi, minute_hand_length)
+    hour_vector = clock_hand_vector(hour/12*2*np.pi + minute/720*2*np.pi + second/3600*2*np.pi, hour_hand_length)
+    minute_vector = clock_hand_vector(minute/60*2*np.pi + second/3600*2*np.pi, minute_hand_length)
     second_vector = clock_hand_vector(second/60*2*np.pi, second_hand_length)
+    GMT_vector = clock_hand_vector(hour/24*2*np.pi + minute/1440*2*np.pi + second/7200*2*np.pi, hour_hand_length)
 
     plt.arrow(center[0], center[1], hour_vector[0], hour_vector[1], head_length = 3, linewidth = hour_hand_width, color = 'black')
     plt.arrow(center[0], center[1], minute_vector[0], minute_vector[1], linewidth = minute_hand_width, color = 'black')
     plt.arrow(center[0], center[1], second_vector[0], second_vector[1], linewidth = second_hand_width, color = 'red')
+    plt.arrow(center[0], center[1], GMT_vector[0], GMT_vector[1], linewidth = hour_hand_width, color = 'yellow')
 
     plt.pause(0.1)
     plt.clf()

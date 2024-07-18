@@ -5,12 +5,15 @@
 ## (c) Copyright 2020. Intelligent Racing Inc. Not permitted for commercial use
 
 # Please make sure to conda install -c conda-forge keras
+import os
 import keras
 from keras.models import Sequential
 from keras.layers import Dense
 import numpy as np
 import matplotlib.pyplot as plt
 from keras.activations import sigmoid
+
+os.environ['PYTHONIOENCODING'] = 'utf-8'
 
 linearSeparableFlag = True
 x_bias = 0
@@ -66,7 +69,7 @@ model.fit(trainingX, trainingY, epochs=100, batch_size=10, verbose=1, validation
 # score = model.evaluate(testingX, testingY, verbose=0)
 score = 0
 for i in range(100):
-    output = model.predict(np.array([testingX[i,:]]))
+    output = model.predict(np.array([testingX[i,:]]), verbose = 0)
     if output<0.5:
         estimate = 0
         plt.plot(testingX[i, 0], testingX[i, 1], 'bo')

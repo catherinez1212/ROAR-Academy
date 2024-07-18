@@ -14,9 +14,9 @@ def rotationMatrix(degree):
 
 v1 = np.array([[1.,3.]]).T     # Another notation for transpose
 rotation_matrix = rotationMatrix(45)
-
+#print(v1)
 v2 = rotation_matrix.dot(v1)
-
+#print(v2)
 plt.arrow(0,0,v1[0,0],v1[1,0], head_width=0.8, head_length=0.8, color = 'b')
 plt.arrow(0,0,v2[0,0],v2[1,0],head_width=0.8, head_length=0.8, color = 'r')
 plt.axis([-5,5,0,10])

@@ -45,8 +45,8 @@ print(x_train.shape[0], 'train samples')
 print(x_test.shape[0], 'test samples')
 
 # convert class vectors to binary class matrices
-y_train = keras.utils.np_utils.to_categorical(y_train, num_classes)
-y_test = keras.utils.np_utils.to_categorical(y_test, num_classes)
+y_train = keras.utils.to_categorical(y_train, num_classes)
+y_test = keras.utils.to_categorical(y_test, num_classes)
 
 # CNN is created also using Sequential model
 model = Sequential()
@@ -69,7 +69,7 @@ model.compile(loss='mean_squared_error',
 model.fit(x_train, y_train,
           batch_size=batch_size,
           epochs=epochs,
-          verbose=1,
+          verbose=2,
           validation_split=0.2)
 score = model.evaluate(x_test, y_test, verbose=0)
 print('Test loss:', score[0])
